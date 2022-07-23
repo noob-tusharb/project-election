@@ -3,8 +3,6 @@ const User = require('../models/User');
 
 const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
-
-  // check json web token exists & is verified
   if (token) {
     jwt.verify(token, 'net ninja secret', (err, decodedToken) => {
       if (err) {
@@ -19,8 +17,6 @@ const requireAuth = (req, res, next) => {
     res.redirect('/login');
   }
 };
-
-// check current user
 const checkUser = (req, res, next) => {
   const token = req.cookies.jwt;
   if (token) {
